@@ -8,7 +8,7 @@ printf "\033c"
 
 for ((i = count; i > 0; i--))
 	do
-		echo "__$i sec left"
+		echo "$i sec left"
 		sleep 1
 	done
 
