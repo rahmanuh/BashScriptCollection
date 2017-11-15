@@ -1,4 +1,4 @@
-# BashScriptCollection
+# Bash Script Collection
 
 Hej!
 
@@ -7,3 +7,5 @@ Nothing fancy in this repo, just a normal bash script to ease our life.
 
 Hej då,
 Rahmanu
+
+nb: please visit me at http://rahmanuh.wordpress.com, but sorry to say most of my writings are in Bahasa Indonesia language :p
