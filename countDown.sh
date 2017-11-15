@@ -3,6 +3,13 @@
 
 echo "Type time (in second) you want to countdown, followed by [ENTER]:"
 
-read count 
+read count
+printf "\033c"
 
-sleep $count && play ../../Music/alarm.wav
+for ((i = count; i > 0; i--))
+	do
+		echo "__$i sec left"
+		sleep 1
+	done
+
+play ../../Music/alarm.wav
