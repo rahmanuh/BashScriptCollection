@@ -11,5 +11,5 @@ for ((i = count*60; i > 0; i--))
 		echo "$i sec left"
 		sleep 1
 	done
-echo "cek"
-#play ../../Music/alarm.wav
+#echo "cek"
+play ../../Music/alarm.wav
