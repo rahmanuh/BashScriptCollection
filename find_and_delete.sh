@@ -19,3 +19,6 @@ find /home/rahmanuh/Downloads/* -mtime +30 -name '*.zip' -exec rm -rvf {} \;
 find /home/rahmanuh/Downloads/* -mtime +30 -name '*.tgz' -exec rm -rvf {} \;
 find /home/rahmanuh/Downloads/* -mtime +30 -name '*.run' -exec rm -rvf {} \;
 find /home/rahmanuh/Downloads/* -mtime +30 -name '*.bundle' -exec rm -rvf {} \;
+
+find /home/rahmanuh/Downloads/temp* -mtime +7 -exec rm -rvf {} \; # delete inside temp folder older than 7 days
+
