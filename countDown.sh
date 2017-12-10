@@ -12,4 +12,4 @@ for ((i = count*60; i > 0; i--))
 		sleep 1
 	done
 
-play alarm.wav
+play /home/rahmanuh/Documents/bash_script_collection/alarm.wav
