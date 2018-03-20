@@ -1,5 +1,6 @@
 #!/bin/bash
-# This script is for uploading the program to microcontroller ATMega328p on the board for the project
+# This script is for uploading the program to microcontroller ATMega328p on the board for the project. In order to upload the program, we need avrdude and the programmer itself. In this project
+# I use usbasp. 
 
 # Type where is the *.elf or *.hex location
 # example: /Dancing_With_Theremin/build/Uno_ACM0/DWT_Project.elf
