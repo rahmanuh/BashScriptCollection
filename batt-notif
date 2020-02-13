@@ -1,0 +1,12 @@
+#!/bin/bash
+
+declare -i capacity="$(cat /sys/class/power_supply/BAT0/capacity)"
+declare -i threshold=15
+
+while [[ ${capacity} > $threshold ]]
+do  
+    capacity="$(cat /sys/class/power_supply/BAT0/capacity)"
+    sleep 30
+    # echo $capacity
+done
+notify-send "battery low, charge please!"

@@ -1,0 +1,13 @@
+[Unit]
+Description=Notification for low battery
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=rahmanuh
+ExecStart=/home/rahmanuh/git/bashs/batt-notif
+
+[Install]
+WantedBy=multi-user.target
