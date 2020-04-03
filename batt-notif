@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 BATTERY_STATUS=$(cat /sys/class/power_supply/BAT0/status)
 declare -i BATTERY_CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
 declare -i CAPACITY_THRESHOLD_BOT=40
