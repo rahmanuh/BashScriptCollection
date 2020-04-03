@@ -1,13 +1,13 @@
 [Unit]
-Description=Notification for low battery
+Description=Notification to keep the battery charge is between 40-80%
 After=network.target
 
 [Service]
 Type=simple
 Restart=always
-RestartSec=1
+RestartSec=90
 User=rahmanuh
-ExecStart=/home/rahmanuh/git/bashs/batt-notif
+ExecStart=/home/rahmanuh/Work/myutils/battery-notify.sh
 
 [Install]
 WantedBy=multi-user.target
