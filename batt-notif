@@ -1,12 +1,37 @@
 #!/bin/bash
 
-declare -i capacity="$(cat /sys/class/power_supply/BAT0/capacity)"
-declare -i threshold=15
+#!/bin/bash
 
-while [[ ${capacity} > $threshold ]]
-do  
-    capacity="$(cat /sys/class/power_supply/BAT0/capacity)"
-    sleep 30
-    # echo $capacity
+BATTERY_STATUS=$(cat /sys/class/power_supply/BAT0/status)
+declare -i BATTERY_CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
+declare -i CAPACITY_THRESHOLD_BOT=40
+declare -i CAPACITY_THRESHOLD_TOP=81
+
+while [ $BATTERY_STATUS == "Discharging" ]
+do
+	# echo Discharging...
+	while [[ $BATTERY_CAPACITY > $CAPACITY_THRESHOLD_BOT ]]
+	do
+	        BATTERY_CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
+		sleep 60
+	done
+	sudo -u rahmanuh DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1001/bus notify-send 'CHARGE' 'It is time to CHARGE the battery!'
+	exit
 done
-notify-send "battery low, charge please!"
+
+sleep 30
+
+BATTERY_STATUS=$(cat /sys/class/power_supply/BAT0/status)
+declare -i BATTERY_CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
+
+while [ $BATTERY_STATUS == "Charging" ]
+do
+	# echo Charging...
+        while [[ $BATTERY_CAPACITY < $CAPACITY_THRESHOLD_TOP ]]
+	do
+                BATTERY_CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
+                sleep 60	
+	done
+	sudo -u rahmanuh DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1001/bus notify-send 'DISCHARGE' 'It is time to DISCHARGE the battery!'
+	exit	
+done
