@@ -28,7 +28,7 @@ do
         BATTERY_CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
         sleep 60                
         
-        if [[ $BATTERY_CAPACITY -gt $CAPACITY_THRESHOLD_TOP ]]
+        if [[ $BATTERY_CAPACITY -ge $CAPACITY_THRESHOLD_TOP ]]
         then
                 sudo -u rahmanuh DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1001/bus notify-send 'DISCHARGE' 'It is time to DISCHARGE the battery!'
                 break
