@@ -3,6 +3,8 @@
 BATTERY_CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
 CAPACITY_THRESHOLD_BOT=40
 CAPACITY_THRESHOLD_TOP=80
+USERNAME=$(users)
+USERID=$(id -u $USERNAME)
 
 while [ $(cat /sys/class/power_supply/BAT0/status) == "Discharging" ] && [[ $BATTERY_CAPACITY -ge $CAPACITY_THRESHOLD_BOT ]]
 do
@@ -12,7 +14,7 @@ do
 
         if [[ $BATTERY_CAPACITY -le $CAPACITY_THRESHOLD_BOT ]]
         then
-                sudo -u rahmanuh DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1001/bus notify-send 'CHARGE' 'It is time to CHARGE the battery!'
+                sudo -u $USERNAME DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$USERID/bus notify-send 'CHARGE' 'It is time to CHARGE the battery!'
                 break
         fi
 done
@@ -26,12 +28,12 @@ while [ $(cat /sys/class/power_supply/BAT0/status) == "Charging" ] && [[ $BATTER
 do
         #echo Charging...
         BATTERY_CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
-        sleep 60                
-        
+        sleep 60
+
         if [[ $BATTERY_CAPACITY -ge $CAPACITY_THRESHOLD_TOP ]]
         then
-                sudo -u rahmanuh DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1001/bus notify-send 'DISCHARGE' 'It is time to DISCHARGE the battery!'
+                sudo -u $USERNAME DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$USERID/bus notify-send 'DISCHARGE' 'It is time to DISCHARGE the battery!'
                 break
-        fi      
+        fi
 done
 echo Charge done
