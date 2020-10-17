@@ -7,7 +7,7 @@ Type=simple
 Restart=always
 RestartSec=90
 User=rahmanuh
-ExecStart=/home/rahmanuh/Work/myutils/battery-notify.sh
+ExecStart=/home/rahmanuh/git/bashs/batt-notif.sh
 
 [Install]
 WantedBy=multi-user.target
